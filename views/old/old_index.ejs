@@ -1,0 +1,52 @@
+<html>
+
+<head>
+    <title>Home</title>
+</head>
+
+<body>
+
+
+
+
+<center>
+    <h1>IITG dev.Connect</h1><br><hr>
+    <form method = "POST" action = "/search">
+        <input type = "text" id = "search" name = "search" placeholder = "Search" required />
+        <input type = "submit" value = "Search" />
+    </form>
+
+
+    <br><br>
+    <%if(!user){%>
+    <button onClick = "location.href='/auth/outlook'"  role="button">Login with Outlook</button>
+    <%}else{%>
+    <h2>Welcome , <%= user.username%></h2>
+    <a href = '/profile'>Dashboard</a>
+    <% }%>
+    <hr>
+    <br>
+
+    <h3>Stats</h3>
+    <p>Total developers : <%= result.length%></p><br>
+
+    <h3>Branch Wise</h3>
+    <p>
+        <a href = '/branch/cse'> CSE </a> | 
+        <a href = '/branch/mnc'> MNC </a> | 
+        <a href = '/branch/ece'> ECE </a> |
+        <a href = '/branch/eee'> EEE </a> |
+        <a href = '/branch/me'> ME </a>   |  
+        <a href = '/branch/ep'> EP </a>   |  
+        <a href = '/branch/cl'> CL </a>   |  
+        <a href = '/branch/cst'> CST </a> |
+        <a href = '/branch/ce'> CE </a>   |
+        <a href = '/branch/bt'> BSBE </a>
+    </p>
+    
+</center>
+
+
+</body>
+
+</html>

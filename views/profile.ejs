@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= user.profile_id%></title>
+    
+    <link href="/public/assets_landing_page/img/logo.png" rel="icon">
+  <link href="/public/assets_landing_page/img/logo.png" rel="apple-touch-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    </noscript>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
+    <link href="/public/assets/css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/mdb.min.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/aos.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/main.css?ver=1.2.1" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <noscript>
+      <style type="text/css">
+        [data-aos] {
+            opacity: 1 !important;
+            transform: translate(0) scale(1) !important;
+        }
+
+        #stack {
+          margin-top:2em;
+          height:75px;
+          width:90%;
+          border:1px solid #000;
+          font:"serif";
+      }
+     
+      </style>
+    </noscript>
+  </head>
+  <body class="bg-light" id="top">
+    <header class="d-print-none">
+      <div class="container text-center text-lg-left">
+        <div class="pt-4 clearfix">
+          <h1 class="site-title mb-0"><%= user.profile_id%></h1>
+          <div class="site-nav"> 
+            <nav role="navigation">
+              <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="/auth/logout" title="Home"><span class="menu-title">Logout</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/" title="Home"><span class="menu-title">Home</span></a>
+                  </li>
+                <li class="nav-item"><a class="nav-link" href="/id/<%= user.profile_id%>" title="Report"><span class="menu-title">Public Profile</span></a>
+                </li>
+                
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="page-content">
+      <div class="container">
+<div class="resume-container">
+  <div class="shadow-1-strong bg-white my-6" id="intro">
+
+    <div class="bg-info text-white">
+      <div class="cover bg-image"><img src="/public/assets/images/header-background.jpg"/>
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);">
+          <div class="text-center p-5">
+            <div class="avatar p-1"><img class="img-thumbnail shadow-2-strong" src="../<%= user.profile_pic %>" width="160" height="160"/></div>
+            <div class="header-bio mt-5">
+             
+                <h2 class="h1"><%= user.username%></h2>
+                <% if(user.busy == 0){ %>
+                <p>Open for collaborations</p>
+                <% }else{ %>
+                  <p>Busy</p>  
+                  <%}%>
+                  <% if(user.people == 0){%>
+                    <% var k = 1;%>
+                    <%}else { var k = user.people} %>
+               <% var i = user.stars/k%>
+               <% i = i.toFixed(1)%> 
+              <p>Rating : <%= i%> &#9734; </p>   
+                <p><%= user.stack%></p>
+             
+                <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href='/reviews/<%= user.profile_id %>'>Ratings</a>  <a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href='/activities/<%= user.profile_id %>'>Activities</a> </div>
+       
+                  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <% if(user.bit == 0){ %>
+
+    <div class="shadow-1-strong bg-white my-5 p-5" id="about">
+      <div class="about-section">
+        <div class="row">
+          
+            <h2 class="h2 fw-light mb-4"><b>First time profile setup !</b></h2>
+            <p style="color:#42aaf5;" > Fill all the fields appropriately and go through <b>"What/How to fill"</b> tutorials to understand
+            the format of updating information in <b>Tech Profile</b> , <b>Interests</b> and <b>Technologies</b> field .</p>
+       
+         
+          </div>
+        </div>
+      </div>
+
+    <% }%>
+  
+    
+    <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+      <center>
+      <div class="contant-section">
+        <h3 class="h2 fw-light text mb-4">Total posts : <%= user.posts%></h3>
+      
+        <form action= '/post_activity' method="get" enctype="multipart/form-data">
+
+      <input class="btn btn-info btn-block mb-4" type="submit" value = "Post Activity"/>
+    </form>
+    </div>
+    </center>
+    </div>
+
+    <div class="shadow-1-strong bg-white my-5 p-5" id="skills">
+      <div class="skills-section">
+
+        <h2 class="h2 fw-light mb-4">Profile Completion : <%= percent%> %</h2>
+        
+    </div>
+  </div>
+  
+  <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+    <center>
+    <div class="contant-section">
+      <h2 class="h2 fw-light text mb-4">Upload Pic</h2>
+      <form action= '/profile/pic' method="post" enctype="multipart/form-data">
+    <div class="form-outline mb-4">
+      <label class="form-label" for="name">Profile Picture</label>
+        <input type="file" id="profile_pic" name = "profile_pic" class="form-control" required/>
+
+    </div>
+    <button class="btn btn-info btn-block mb-4" type="submit">Upload Pic</button>
+  </form>
+  </div>
+  </center>
+  </div>
+
+  
+
+  <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+    <center>
+    <div class="contant-section">
+      <h2 class="h2 fw-light text mb-4">Update Details</h2>
+      <form method="post" enctype="multipart/form-data" autocomplete="off">
+    <!-- <div class="form-outline mb-4">
+      <label class="form-label" for="name">Profile Picture</label>
+        <input type="file" id="profile_pic" name = "profile_pic" class="form-control" />
+
+    </div><hr> -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="name">LinkedIn Link</label>
+      <input type="text" id="connect" name = "connect" class="form-control"  value = '<%= user.connect %>' required/>
+     
+    </div><hr>
+
+    <div class="form-outline mb-4">
+      <label class="form-label" for="name">Github Link</label>
+      <input type="text" id="github" name = "github" class="form-control"  value = '<%= user.github %>' required/>
+     
+    </div><hr>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="name">Branch</label>
+    <select id="branch" name="branch" class="form-control">
+      <% if(user.branch == "NULL"){ %>
+        <option value="NULL" selected>NULL</option>
+        <% }else{ %>
+          <option value="NULL" >NULL</option>
+        <%}%>
+      <% if(user.branch == "CSE"){ %>
+      <option value="CSE" selected>CSE</option>
+      <% }else{ %>
+        <option value="CSE" >CSE</option>
+      <%}%>
+
+      <% if(user.branch == "MNC"){ %>
+        <option value="MNC" selected>MNC</option>
+        <% }else{ %>
+          <option value="MNC" >MNC</option>
+        <%}%>
+
+      <% if(user.branch == "ECE"){ %>
+          <option value="ECE" selected>ECE</option>
+          <% }else{ %>
+            <option value="ECE" >ECE</option>
+          <%}%> 
+
+       <% if(user.branch == "EEE"){ %>
+            <option value="EEE" selected>EEE</option>
+            <% }else{ %>
+              <option value="EEE" >EEE</option>
+            <%}%>     
+  <% if(user.branch == "ME"){ %>
+      <option value="ME" selected>ME</option>
+      <% }else{ %>
+        <option value="ME" >ME</option>
+      <%}%>
+
+      <% if(user.branch == "EP"){ %>
+        <option value="EP" selected>EP</option>
+        <% }else{ %>
+          <option value="EP" >EP</option>
+        <%}%>  
+        
+        <% if(user.branch == "CL"){ %>
+          <option value="CL" selected>CL</option>
+          <% }else{ %>
+            <option value="CL" >CL</option>
+          <%}%>   
+          
+          <% if(user.branch == "CST"){ %>
+            <option value="CST" selected>CST</option>
+            <% }else{ %>
+              <option value="CST" >CST</option>
+            <%}%>           
+
+            <% if(user.branch == "CE"){ %>
+              <option value="CE" selected>CE</option>
+              <% }else{ %>
+                <option value="CE" >CE</option>
+              <%}%>   
+
+              <% if(user.branch == "BSBE"){ %>
+                <option value="BSBE" selected>BSBE</option>
+                <% }else{ %>
+                  <option value="BSBE" >BSBE</option>
+                <%}%>   
+    </select>
+
+  </div><hr>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="email">Year</label>
+    <select id="year" name="year" class="form-control">
+
+      <% if(user.year == 1){ %>
+      <option value=1 selected>1</option>
+      <% }else{ %>
+        <option value=1 >1</option>
+      <%}%>
+
+      <% if(user.year == 2){ %>
+        <option value=2 selected>2</option>
+        <% }else{ %>
+          <option value=2 >2</option>
+        <%}%>
+
+      <% if(user.year == 3){ %>
+          <option value=3 selected>3</option>
+          <% }else{ %>
+            <option value=3 >3</option>
+          <%}%> 
+
+       <% if(user.year == 4){ %>
+            <option value=4 selected>4</option>
+            <% }else{ %>
+              <option value=4 >4</option>
+            <%}%>     
+  
+    </select>
+  </div><hr>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="stack">Tech Profile </button> </label>
+    <textarea autocomplete="off" class="form-control" style="resize: none;" id="stack" name  ="stack" rows="2" required><%= user.stack %></textarea>
+    <% if(user.stack == "NULL"){ %>
+    <i><ImageButton class="btn" id = "myBtn1"> What/How to fill <i class="fa fa-question"></i></ImageButton>
+    <%}%>
+    <div id="myModal1" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Tech Profile</h2>
+        <p>In this field specify the domain you specialize in.</p>
+        <p>"Android App Development" , "Native App Development" , "Machine Learning" <br>, "Data Science" etc etc .. are examples of profiles</p>
+        <p>For multiple profiles , separate each with commas "," .</p>
+        <p><b>Eg: App Dev , Machine Learning , Data Science</b></p>
+        <p>* Mention the profiles in which you are proficient and have done some projects on it </p>
+      </div>
+    
+    </div>
+
+  </div><hr>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="message">About</label>
+    <textarea class="form-control" style="resize: none;" id="about" name ="about" rows="4"  required><%= user.about %></textarea>
+   
+  </div><hr>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="message">Interests</label>
+    <textarea class="form-control" style="resize: none;" id="interests" name  = "interests" rows="2"  ><%= user.interests %></textarea>
+    <% if(user.interests == "NULL"){ %>
+      <i><ImageButton class="btn" id = "myBtn2"> What/How to fill <i class="fa fa-question"></i></ImageButton>
+      <%}%>
+    <div id="myModal2" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Interests</h2>
+        <p>In this field , specify the stuff you are trying to explore or learn <br> it can be a mixture of profiles and specific languages</p>
+        <br><p><b>Eg : App Dev , Django , Machine Learning</b></p>
+        <p>*Mention only that stuff which you wish to explore and planning to learn .</p>
+
+      </div>
+    
+    </div>
+  </div><hr>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="message">Technologies </label>
+    <textarea class="form-control" style="resize: none;" id="technologies" name = "technologies" rows="2" required><%= user.technologies %></textarea>
+    <% if(user.technologies == "NULL"){ %>
+      <i><ImageButton class="btn" id = "myBtn3"> What/How to fill <i class="fa fa-question"></i></ImageButton>
+      <%}%>
+    <div id="myModal3" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close" id = "close3">&times;</span>
+        <h2>Technologies</h2>
+        <p>In this field , specify the programming languages/frameworks you work on .</p>
+        <p><b>Eg : C/C++ , Python , Django , Flask</b></p>
+        <p>*Mention only those language that you are using currently for projects</p>
+      </div>
+    
+    </div>
+  </div>
+<hr>
+<% if(user.busy == 0){ %>
+  <div class="form-outline mb-4"></div>
+  <label for="occupied">Not free</label>
+  <input type="radio" id="occupied" name="busy" value=1 ><br><br>
+  <label for="free">Looking for projects</label>
+  <input type="radio" id="free" name="busy" value=0 checked>
+</div><br>
+<% }else{ %>
+  <div class="form-outline mb-4"></div>
+  <label for="occupied">Not free</label>
+  <input type="radio" id="occupied" name="busy" value=1 checked><br><br>
+  <label for="free">Looking for projects</label>
+  <input type="radio" id="free" name="busy" value=0 >
+</div><br>
+
+<%}%>
+  <button class="btn btn-info btn-block mb-4" type="submit">Update</button>
+</form>
+          </div>
+        
+</div></div></center>
+    </div>
+    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+      
+        <div class="text-small">
+          <div class="mb-1"> Developed by <strong><span><a href = "https://www.instagram.com/hello_naman/" target="_blank" >Naman Tiwari </a></span></strong></div>
+              </div>
+      </div>
+    </footer>
+    <script src="scripts/mdb.min.js?ver=1.2.1"></script>
+    <script src="scripts/aos.js?ver=1.2.1"></script>
+    <script src="scripts/main.js?ver=1.2.1"></script>
+    <script src="scripts/main.js?ver=1.2.1"></script>
+    <script>
+      // Get the modal
+      var modal0 = document.getElementById("myModal1");
+      
+      // Get the button that opens the modal
+      var btn0 = document.getElementById("myBtn1");
+      
+      
+      // Get the <span> element that closes the modal
+      var span0 = document.getElementsByClassName("close")[0];
+      
+      // When the user clicks the button, open the modal 
+      btn0.onclick = function() {
+        modal0.style.display = "block";
+      }
+      
+      // When the user clicks on <span> (x), close the modal
+      span0.onclick = function() {
+        modal0.style.display = "none";
+      }
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal0) {
+          modal0.style.display = "none";
+        }
+      }
+      </script>
+
+      <!-- Second modal -->
+
+      <script>
+        // Get the modal
+        var modal1 = document.getElementById("myModal2");
+        
+        // Get the button that opens the modal
+        var btn1 = document.getElementById("myBtn2");
+        
+        
+        // Get the <span> element that closes the modal
+        var span1 = document.getElementsByClassName("close")[1];
+        
+        // When the user clicks the button, open the modal 
+        btn1.onclick = function() {
+          modal1.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span1.onclick = function() {
+          modal1.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal1) {
+            modal1.style.display = "none";
+          }
+        }
+        </script>
+
+        <!-- Third Modal -->
+
+        <script>
+          // Get the modal
+          var modal2 = document.getElementById("myModal3");
+          
+          // Get the button that opens the modal
+          var btn2 = document.getElementById("myBtn3");
+          
+          
+          // Get the <span> element that closes the modal
+          var span2 = document.getElementsByClassName("close")[2];
+          
+          // When the user clicks the button, open the modal 
+          btn2.onclick = function() {
+            modal2.style.display = "block";
+          }
+          
+          // When the user clicks on <span> (x), close the modal
+          span2.onclick = function() {
+            modal2.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal2) {
+              modal2.style.display = "none";
+            }
+          }
+          </script>
+
+          <script>
+            $(function() {
+            var availableTags = ["App Dev" , "Web Dev" , "Backend Dev" , "Frontend Dev" , "Full Stack" , "Machine Learning" , "Data Science" , "Quant"]; // array of autocomplete words
+            var minWordLength = 2;
+            function split(val) {
+            return val.split(' ');
+            }
+            
+            function extractLast(term) {
+            return split(term).pop();
+            }
+            $("#stack") // jQuery Selector
+            // don't navigate away from the field on tab when selecting an item
+            .bind("keydown", function(event) {
+            if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
+            event.preventDefault();
+            }
+            }).autocomplete({
+            minLength: minWordLength,
+            source: function(request, response) {
+            // delegate back to autocomplete, but extract the last term
+            var term = extractLast(request.term);
+            if(term.length >= minWordLength){
+            response($.ui.autocomplete.filter( availableTags, term ));
+            }
+            },
+            focus: function() {
+            // prevent value inserted on focus
+            return false;
+            },
+            select: function(event, ui) {
+            var terms = split(this.value);
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push(ui.item.value);
+            // add placeholder to get the comma-and-space at the end
+            terms.push("");
+            this.value = terms.join(" , ");
+            return false;
+            }
+            });
+
+            $("#interests") // jQuery Selector
+            // don't navigate away from the field on tab when selecting an item
+            .bind("keydown", function(event) {
+            if (event.keyCode === $.ui.keyCode.TAB && $(this).data("ui-autocomplete").menu.active) {
+            event.preventDefault();
+            }
+            }).autocomplete({
+            minLength: minWordLength,
+            source: function(request, response) {
+            // delegate back to autocomplete, but extract the last term
+            var term = extractLast(request.term);
+            if(term.length >= minWordLength){
+            response($.ui.autocomplete.filter( availableTags, term ));
+            }
+            },
+            focus: function() {
+            // prevent value inserted on focus
+            return false;
+            },
+            select: function(event, ui) {
+            var terms = split(this.value);
+            // remove the current input
+            terms.pop();
+            // add the selected item
+            terms.push(ui.item.value);
+            // add placeholder to get the comma-and-space at the end
+            terms.push("");
+            this.value = terms.join(" , ");
+            return false;
+            }
+            });
+
+            });
+
+            
+             
+
+            </script>
+
+         
+  </body>
+</html>

@@ -1,0 +1,24 @@
+
+    <title>Search Result</title>
+</head>
+
+<body>
+
+
+    <p>
+        <a href = '/' >Home</a> 
+    </p>  
+    
+<br> <center>
+    <h3>Developers from <%= branch%> : <%= result.length%></h3><br><hr>
+    <% result.forEach(function(r) { %>
+       <p> <%= r.username%> </p>
+        <br><img src=<%= r.profile_pic%> width="50" height="50">
+           
+            <p>Stack : <%= r.stack%></p>
+            <a href = "/id/<%= r.profile_id%>" >View Profile</a>
+            <hr>
+        <%})%>
+    </center>
+</body>
+</head>

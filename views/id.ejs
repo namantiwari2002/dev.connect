@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= data.profile_id%></title>
+    <link href="/public/assets_landing_page/img/logo.png" rel="icon">
+  <link href="/public/assets_landing_page/img/logo.png" rel="apple-touch-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    </noscript>
+    <link href="/public/assets/css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/mdb.min.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/aos.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/main.css?ver=1.2.1" rel="stylesheet">
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=606b1f784d36eb001870099f&product=sticky-share-buttons" async="async"></script>
+    <noscript>
+      <style type="text/css">
+        [data-aos] {
+            opacity: 1 !important;
+            transform: translate(0) scale(1) !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body class="bg-light" id="top">
+    <header class="d-print-none">
+      <div class="container text-center text-lg-left">
+        <div class="pt-4 clearfix">
+          <h1 class="site-title mb-0"><%= data.profile_id%></h1>
+          <div class="site-nav"> 
+            <nav role="navigation">
+              <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="/" title="Home"><span class="menu-title">Home</span></a>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="/report" title="Report"><span class="menu-title">Report</span></a>
+                </li>
+                
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-content">
+      <div class="container">
+<div class="resume-container">
+  <div class="shadow-1-strong bg-white my-6" id="intro">
+    <div class="bg-info text-white">
+      <div class="cover bg-image"><img src="/public/assets/images/header-background.jpg"/>
+        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(1px);">
+          <div class="text-center p-5">
+            <div class="avatar p-1"><img class="img-thumbnail shadow-2-strong" src="../../<%= data.profile_pic %>" width="160" height="160"/></div>
+            <div class="header-bio mt-5">
+              
+                <h2 class="h1"><%= data.username%></h2>
+                <% if(data.busy == 0){ %>
+                  <p>&#10686; Looking for projects</p>
+                  <% }else{ %>
+                    <!-- <p>&#10687; Busy</p>   -->
+                    <%}%>
+                    <% if(data.people == 0){%>
+                      <% var k = 1;%>
+                      <%}else { var k = data.people} %>
+                 <% var i = data.stars/k%>
+                 <% i = i.toFixed(1)%> 
+                <p>Rating : <%= i%> &#9734; </p>    
+                <p><%= data.stack%></p>
+                  
+              <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href='<%= data.connect %>' target="_blank" data-aos="fade-right" data-aos-delay="700">Connect</a>   <a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href='/reviews/<%= data.profile_id %>' data-aos="fade-right" data-aos-delay="700">Ratings</a>  <a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href='/activities/<%= data.profile_id %>' data-aos="fade-right" data-aos-delay="700">Activities</a>  </div>
+       
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="shadow-1-strong bg-white my-5 p-5" id="about">
+    <div class="about-section">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="h2 fw-light mb-4">About Me</h2>
+          <p><%= data.about%></p>  </div>
+         
+        <div class="col-md-5 offset-lg-1">
+          <div class="row mt-2">
+            <h2 class="h2 fw-light mb-4">Details</h2>
+            <div class="col-sm-5"> 
+              <div class="pb-2 fw-bolder"><i class="" style="width:24px;opacity:0.85;"></i> Branch</div>
+            </div>
+            <div class="col-sm-7">
+              <div class="pb-2"><%= data.branch%></div>
+            </div>
+            <div class="col-sm-5">
+              <div class="pb-2 fw-bolder"><i class="" style="width:24px;opacity:0.85;"></i> Year</div>
+            </div>
+            <div class="col-sm-7">
+              <div class="pb-2"><%= data.year%></div>
+            </div>
+            <div class="col-sm-5">
+              <div class="pb-2 fw-bolder"><i class="" style="width:24px;opacity:0.85;"></i> Interests</div>
+            </div>
+            <div class="col-sm-7">
+              <div class="pb-2"><%= data.interests%></div>
+            </div>
+            <div class="col-sm-5">
+              <div class="pb-2 fw-bolder"><i class="" style="width:24px;opacity:0.85;"></i> Technologies</div>
+            </div>
+            <div class="col-sm-7">
+              <div class="pb-2"><%= data.technologies%></div>
+            </div>
+
+            <div class="col-sm-5">
+              <div class="pb-2 fw-bolder"><i class="" style="width:24px;opacity:0.85;"></i> Github</div>
+            </div>
+            <div class="col-sm-7">
+              <div class="pb-2"><a href = '<%= data.github%>' target = '_blank' > <%= data.github%> </a> </div>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if(user){ %>
+    <% if(user.rated_people.includes(data.profile_id)){ %>
+
+      <div class="resume-container">
+        <div class="shadow-1-strong bg-white my-6" id="intro">
+        
+       
+        <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+         
+            
+          <div class="contant-section">
+           
+            <h3>Rating submitted !</h3>
+            <p><a href = "/review_edit/<%= data.profile_id%>">Edit review</a></p>
+            
+        
+
+      </div>
+            
+    </div></div>
+  </div>
+
+
+      <%}else if(data.profile_id == user.profile_id){ %>
+        
+        
+
+        <%}else{%>
+      
+
+    <div class="resume-container">
+      <div class="shadow-1-strong bg-white my-6" id="intro">
+      
+     
+      <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+        <center>
+          
+        <div class="contant-section">
+          <h2 class="h2 fw-light text mb-4">Rate Developer</h2>
+          <p>Give reviews based on your personal experience with the developer!</p>
+          <form action=""
+        method="POST">
+      </center>
+          <label class="form-label" for="rating">Stars</label>
+          <center>
+          <select id="rating" name="rating" class="form-control">
+      
+              <option value=1 >1</option>
+              <option value=2 >2</option>
+              <option value=3 >3</option>
+              <option value=4 >4</option>
+              <option value=5 >5</option>
+               
+          </select><br>
+       
+      <div class="form-outline mb-4">
+        <textarea class="form-control" style="resize: none;" id="review" name = "review" rows="4" required></textarea>
+        <label class="form-label" for="message">Reviews</label>
+      </div>
+     
+      <button class="btn btn-info btn-block mb-4" type="submit">Post</button>
+    </form>
+              </div>
+            
+    </div></div></center>
+        <%}%>
+
+    <%}else{ %>
+
+      <div class="resume-container">
+        <div class="shadow-1-strong bg-white my-6" id="intro">
+        
+       
+        <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+         
+            
+          <div class="contant-section">
+           
+            <h3>Sign in as a developer to rate other developers !</h3>
+            
+        
+
+      </div>
+            
+    </div></div>
+  </div>
+
+        
+
+      <%}%>
+
+
+
+  <div class="sharethis-inline-share-buttons"></div>
+<!-- ShareThis END -->
+ 
+  
+    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+      
+        <div class="text-small">
+          <div class="mb-1"> Developed by <strong><span><a href = "https://www.instagram.com/hello_naman/" target="_blank" >Naman Tiwari </a></span></strong></div>
+              </div>
+      </div>
+    </footer>
+    <script src="/public/assets/scripts/mdb.min.js?ver=1.2.1"></script>
+    <script src="/public/assets/scripts/aos.js?ver=1.2.1"></script>
+    <script src="/public/assets/scripts/main.js?ver=1.2.1"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <title>Dashboard</title>
+    </head>
+
+    <body>
+
+        
+
+       <center>
+        <img src = '<%= user.profile_pic %>' width="200" height="200" /><hr><br>
+        <h2>Hola , <%= user.username%></h2>
+
+        <p>
+            <a href = '/auth/logout' >Logout</a> |
+            <a href = '/id/<%= user.profile_id%>'>Public Profile</a>
+        </p> 
+
+       <br>
+        <h3 class="text-muted"> Username : <%= user.profile_id %></h3>
+  
+<br>
+
+        <h1>Edit</h1><br>
+        <form method = 'POST' >
+          Profile Picture : <input type = 'text' name = 'profile_pic' id = 'profile_pic' value = <%= user.profile_pic%> ><br><br>
+          About : <input type = 'text' name = 'about' name = 'about' value = <%= user.about%> ><br><br>
+          Branch : <input type = 'text' name = 'branch' id = 'branch' value = '<%= user.branch%>' > || 
+           Year : <input type = 'year' name = 'year' value = '<%= user.year%>' ><br><br>
+         Interests : <input type = 'text' id = 'interests' name = 'interests' value = '<%= user.interests%>'/> <br><br>
+          Stack : <input type = 'text' id = 'stack' name = 'stack' value = '<%= user.stack%>' /><br><br>
+          Technologies : <input type = 'text' id = 'technologies' name = 'technologies' value = '<%= user.technologies%>' /><br><br>
+          Connect : <input type = 'text' name = 'connect' value = <%= user.connect%> ><br><br>
+          <input type = 'submit' value = 'Update' />
+
+        </form>
+
+</center>
+
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Report Profile</title>
+    <link href="/public/assets_landing_page/img/logo.png" rel="icon">
+  <link href="/public/assets_landing_page/img/logo.png" rel="apple-touch-icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
+    </noscript>
+    <link href="/public/assets/css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/mdb.min.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/aos.css?ver=1.2.1" rel="stylesheet">
+    <link href="/public/assets/css/main.css?ver=1.2.1" rel="stylesheet">
+    <script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=606b1f784d36eb001870099f&product=sticky-share-buttons" async="async"></script>
+
+    <noscript>
+      <style type="text/css">
+        [data-aos] {
+            opacity: 1 !important;
+            transform: translate(0) scale(1) !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body class="bg-light" id="top">
+    <header class="d-print-none">
+      <div class="container text-center text-lg-left">
+        <div class="pt-4 clearfix">
+          <h1 class="site-title mb-0">dev.Connect</h1>
+          <div class="site-nav"> 
+            <nav role="navigation">
+              <ul class="nav justify-content-center">
+                <li class="nav-item"><a class="nav-link" href="/" title="Home"><span class="menu-title">Home</span></a>
+                </li>
+              
+                
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="page-content">
+      <div class="container">
+<div class="resume-container">
+  <div class="shadow-1-strong bg-white my-6" id="intro">
+  
+ 
+  <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+    
+    <div class="contant-section">
+      <h2 class="h2 fw-light text mb-4"><%= result.headline%></h2>
+        <p><%= result.date%></p>
+      <p>By : <a href = "/id/<%= result.profile_id%>"><%= result.profile_id%></a></p>
+          </div>
+        
+</div></div>
+    </div>
+
+    <div class="shadow-1-strong bg-white my-6" id="intro">
+  
+ 
+        <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
+          
+          <div class="contant-section">
+            <p><%= result.content%></p><br>
+
+            <p>Link : <a href = '<%= result.link%>'><%= result.link%></a></p>
+              
+      </div></div>
+          </div>
+      
+
+    </div>
+    </div>
+    <div class="sharethis-inline-share-buttons"></div>
+    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
+      
+        <div class="text-small">
+          <div class="mb-1"> Developed by <strong><span><a href = "https://www.instagram.com/hello_naman/" target="_blank" >Naman Tiwari </a></span></strong></div>
+              </div>
+      </div>
+    </footer>
+    <script src="/public/assets/scripts/mdb.min.js?ver=1.2.1"></script>
+    <script src="/public/assets/scripts/aos.js?ver=1.2.1"></script>
+    <script src="/public/assets/scripts/main.js?ver=1.2.1"></script>
+  </body>
+</html>
